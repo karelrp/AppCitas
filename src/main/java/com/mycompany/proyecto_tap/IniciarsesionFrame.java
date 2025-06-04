@@ -72,7 +72,7 @@ public class IniciarsesionFrame extends javax.swing.JFrame {
         //JFrame IniciarsesionFrame = new JFrame();
 
         //IniciarsesionFrame.repaint();
-        getContentPane().setBackground(Color.WHITE);
+       getContentPane().setBackground(new Color(249, 250, 251));
         //System.out.println("doctor: " + usuario.getNombre() + " y su numero de citas son: " + citasReservadas.size());
 
     }

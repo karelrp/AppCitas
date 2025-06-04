@@ -31,7 +31,7 @@ public class AgregarEspecialistaFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         IniciarsesionFrame.repaint();
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(249, 250, 251));
     }
 
     public AgregarEspecialistaFrame(ArrayList<Personaa> listPersonas) {

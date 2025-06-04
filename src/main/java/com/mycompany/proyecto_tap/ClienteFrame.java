@@ -41,7 +41,7 @@ public class ClienteFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         IniciarsesionFrame.repaint();
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(249, 250, 251));
     }
 
     public ClienteFrame(Personaa cliente, int indexU, ArrayList<Personaa> listPersonas, ArrayList<Citaa> citasReservadas) {

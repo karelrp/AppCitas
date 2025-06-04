@@ -33,7 +33,7 @@ public class RegistroFrame extends javax.swing.JFrame {
 
     public RegistroFrame() {
         initComponents();
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(249, 250, 251));
     }
 
     public RegistroFrame(ArrayList<Personaa> listPersonas, ArrayList<Citaa> citasReservadas) {

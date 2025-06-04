@@ -37,7 +37,7 @@ public class RegistroPagoFrame extends javax.swing.JFrame {
      */
     public RegistroPagoFrame() {
         initComponents();
-                 getContentPane().setBackground(Color.WHITE);
+                getContentPane().setBackground(new Color(249, 250, 251));
     }
 
     public RegistroPagoFrame(ArrayList<Personaa> listPersonas, Personaa cliente, Personaa doctor, int indexCD, Citaa cita, ArrayList<Citaa> citasReservadas) {

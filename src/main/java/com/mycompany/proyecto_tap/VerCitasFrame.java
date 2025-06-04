@@ -37,7 +37,7 @@ public class VerCitasFrame extends javax.swing.JFrame {
      */
     public VerCitasFrame() {
         initComponents();
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(new Color(249, 250, 251));
         panelLista.setLayout(grid);
          System.out.println("doctor: "+doctor.getNombre()+" y su numero de citas son: "+citasReservadas.size());
         actualiza();
@@ -58,7 +58,7 @@ public class VerCitasFrame extends javax.swing.JFrame {
         System.out.println("citas: "+citasReservadas.size());
         // Actualiza el JFrame para que se muestren los cambios
         IniciarsesionFrame.repaint();
-        getContentPane().setBackground(new Color(180, 205, 230));
+        getContentPane().setBackground(new Color(249, 250, 251));
         ///System.out.println(doctor.getUsuario());
         actualiza();
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
