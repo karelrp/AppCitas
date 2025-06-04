@@ -42,8 +42,7 @@ public class PanelCitas extends javax.swing.JPanel {
         this.listPersonas = listPersonas;
         this.citasReservadas = citasReservadas;
         this.indexCD = indexCD;
-        labelN.setText(cita.getCliente().getNombre() + " " + cita.getCliente().getApellido());
-        labelU.setText(cita.getCliente().getUsuario());
+        labelN.setText(cita.getCliente().getNombre() + " || " + cita.getCliente().getUsuario());
         labelC.setText(cita.getFecha());
         labelP.setText("$ " + cita.getPrecio());
         //bloqueo();
@@ -121,69 +120,32 @@ public class PanelCitas extends javax.swing.JPanel {
         fecha = a + "-" + m + "-" + d + "T" + horaF;
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         fechaD = LocalDateTime.parse(fecha, formatter);
-
-        // Imprime el resultado
         System.out.println(fechaD);
-        if (cliente.isBloqueado()) {
-            btnBloqueo.setSelected(true);
-            this.setBackground(Color.BLACK);
-            labelN.setForeground(Color.WHITE);
-            labelU.setForeground(Color.WHITE);
-            labelC.setForeground(Color.WHITE);
-            labelP.setForeground(Color.WHITE);
-            jLabel2.setForeground(Color.WHITE);
-            jLabel3.setForeground(Color.WHITE);
-            jLabel6.setForeground(Color.WHITE);
-            jLabel5.setForeground(Color.WHITE);
-        } else if (fechaD.isBefore(LocalDateTime.now()) && cita.isCitaPagada() && cita.getAvancePago() == cita.getDoctor().getCostoConsulta()) {
-            this.setBackground(new Color(204, 255, 204));
-            labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
-            labelC.setForeground(Color.BLACK);
-            labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
-            btnPago.setEnabled(false);
-            btnEliminar.setEnabled(false);
-            btnBloqueo.setEnabled(false);
-        } else if (fechaD.isBefore(LocalDateTime.now()) && cita.getAvancePago() != cita.getDoctor().getCostoConsulta()) {
-            this.setBackground(new Color(150, 0, 0));
-            labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
-            labelC.setForeground(Color.BLACK);
-            labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
 
-        } else if (fechaD.isAfter(LocalDateTime.now()) && cita.isCitaPagada() && cita.getAvancePago() == cita.getDoctor().getCostoConsulta()) {
-            this.setBackground(new Color(120, 205, 230));
-            labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
-            labelC.setForeground(Color.BLACK);
-            labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
-            btnPago.setEnabled(false);
-            btnEliminar.setEnabled(false);
-            btnBloqueo.setEnabled(false);
-        } else if (fechaD.isAfter(LocalDateTime.now()) && !cita.isCitaPagada() && cita.getAvancePago() < cita.getDoctor().getCostoConsulta()) {
-            this.setBackground(new Color(255, 255, 153));
-            labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
-            labelC.setForeground(Color.BLACK);
-            labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
-            btnEliminar.setEnabled(false);
-            btnBloqueo.setEnabled(false);
+        if (cliente.isBloqueado()) {
+            btnBloqueo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btnBloqueo.png")));
+            labelEstado.setText("Bloqueado");
+        } else {
+
+            btnBloqueo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NoBloqueo.png")));
+
+            if (fechaD.isBefore(LocalDateTime.now()) && cita.isCitaPagada() && cita.getAvancePago() == cita.getDoctor().getCostoConsulta()) {
+                labelEstado.setText("Cita completada");
+                btnPago.setEnabled(false);
+                btnEliminar.setEnabled(false);
+                btnBloqueo.setEnabled(false);
+            } else if (fechaD.isBefore(LocalDateTime.now()) && cita.getAvancePago() != cita.getDoctor().getCostoConsulta()) {
+                labelEstado.setText("Deudor moroso");
+            } else if (fechaD.isAfter(LocalDateTime.now()) && cita.isCitaPagada() && cita.getAvancePago() == cita.getDoctor().getCostoConsulta()) {
+                labelEstado.setText("Cita Liquidada");
+                btnPago.setEnabled(false);
+                btnEliminar.setEnabled(false);
+                btnBloqueo.setEnabled(false);
+            } else if (fechaD.isAfter(LocalDateTime.now()) && !cita.isCitaPagada() && cita.getAvancePago() < cita.getDoctor().getCostoConsulta()) {
+                labelEstado.setText("Cita pendiente");
+                btnEliminar.setEnabled(false);
+                btnBloqueo.setEnabled(false);
+            }
         }
     }
 
@@ -201,124 +163,122 @@ public class PanelCitas extends javax.swing.JPanel {
     private void initComponents() {
 
         labelN = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
-        btnBloqueo = new javax.swing.JToggleButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        labelU = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         labelC = new javax.swing.JLabel();
         labelP = new javax.swing.JLabel();
-        btnPago = new javax.swing.JButton();
+        btnEliminar = new org.edisoncor.gui.panel.PanelImage();
+        btnPago = new org.edisoncor.gui.panel.PanelImage();
+        btnBloqueo = new org.edisoncor.gui.panel.PanelImage();
+        jSeparator1 = new javax.swing.JSeparator();
+        labelEstado = new javax.swing.JLabel();
+
+        setBackground(java.awt.Color.white);
 
         labelN.setText("...");
-
-        btnEliminar.setText("🗑");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnBloqueo.setText("🚫");
-        btnBloqueo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBloqueoActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("PACIENTE:");
-
-        jLabel3.setText("USUARIO: ");
-
-        labelU.setText("...");
-
-        jLabel5.setText("HORA CITA:");
-
-        jLabel6.setText("PRECIO: ");
 
         labelC.setText("...");
 
         labelP.setText("...");
 
-        btnPago.setText("💵");
-        btnPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagoActionPerformed(evt);
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btnEliminar.png"))); // NOI18N
+        btnEliminar.setPreferredSize(new java.awt.Dimension(20, 20));
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
             }
         });
+
+        javax.swing.GroupLayout btnEliminarLayout = new javax.swing.GroupLayout(btnEliminar);
+        btnEliminar.setLayout(btnEliminarLayout);
+        btnEliminarLayout.setHorizontalGroup(
+            btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        btnEliminarLayout.setVerticalGroup(
+            btnEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        btnPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btnPagar.png"))); // NOI18N
+        btnPago.setPreferredSize(new java.awt.Dimension(20, 20));
+        btnPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPagoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnPagoLayout = new javax.swing.GroupLayout(btnPago);
+        btnPago.setLayout(btnPagoLayout);
+        btnPagoLayout.setHorizontalGroup(
+            btnPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        btnPagoLayout.setVerticalGroup(
+            btnPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        btnBloqueo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/NoBloqueo.png"))); // NOI18N
+        btnBloqueo.setPreferredSize(new java.awt.Dimension(20, 20));
+        btnBloqueo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBloqueoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnBloqueoLayout = new javax.swing.GroupLayout(btnBloqueo);
+        btnBloqueo.setLayout(btnBloqueoLayout);
+        btnBloqueoLayout.setHorizontalGroup(
+            btnBloqueoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+        btnBloqueoLayout.setVerticalGroup(
+            btnBloqueoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        labelEstado.setText("...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelN, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelU, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(labelC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelC, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBloqueo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                .addComponent(labelN, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBloqueo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelN)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(labelC))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPago)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(labelU)
-                        .addComponent(btnBloqueo)
-                        .addComponent(jLabel6)
-                        .addComponent(labelP)))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelC)
+                        .addComponent(labelN)
+                        .addComponent(labelP)
+                        .addComponent(labelEstado))
+                    .addComponent(btnPago, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBloqueo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        /*int indexC=0;
-        System.out.println("listP:"+listPersonas.size());
-        for(int i=0;i<listPersonas.size();i++){
-            if(listPersonas.get(i).getUsuario().equals(cita.getCliente().getUsuario())){
-                indexC=i;
-                break;
-            }
-        }*/
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         boolean repetir = false;
         cliente = cita.getCliente();
         String nombre;
@@ -326,7 +286,7 @@ public class PanelCitas extends javax.swing.JPanel {
             if (citasReservadas.get(i).getCliente().getUsuario().equals(cliente.getUsuario())) {
                 System.out.println("entró al primer if");
                 nombre = citasReservadas.get(i).getCliente().getUsuario();
-                
+
                 if (cliente.getUsuario().equals(nombre)) {
                     try {
                         if (JOptionPane.showConfirmDialog(null, "Seguro") == JOptionPane.YES_OPTION) {
@@ -346,9 +306,9 @@ public class PanelCitas extends javax.swing.JPanel {
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("date de bajaaaaa");
-                        i=1000000000;
+                        i = 1000000000;
                     }
-                    
+
                 } else {
 
                     i++;
@@ -358,8 +318,9 @@ public class PanelCitas extends javax.swing.JPanel {
 
                 i++;
             }
-            if(i==0)
+            if (i == 0) {
                 i++;
+            }
             System.out.println("salio del if");
             System.out.println("cantidad de i: " + i);
         }
@@ -378,12 +339,18 @@ public class PanelCitas extends javax.swing.JPanel {
             }
         }
         System.out.println("removio correctamente");
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarMouseClicked
 
-    private void btnBloqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBloqueoActionPerformed
+    private void btnPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagoMouseClicked
+        RegistroPagoFrame registroPagoFrame = new RegistroPagoFrame(listPersonas, cliente, doctor, indexCD, cita, citasReservadas);
+        registroPagoFrame.setVisible(true);
+        listPersonas = registroPagoFrame.getListPersonas();
+    }//GEN-LAST:event_btnPagoMouseClicked
+
+    private void btnBloqueoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBloqueoMouseClicked
         //JOptionPane.showMessageDialog(null,cliente.isBloqueado()+"");
         if (cliente.isBloqueado() == true) {
-            
+
             try {
                 if (db.update(cliente) > 0) {
                     JOptionPane.showMessageDialog(null, "USUARIO DESBLOQUEADO");
@@ -406,26 +373,17 @@ public class PanelCitas extends javax.swing.JPanel {
 
         }
         color();
-    }//GEN-LAST:event_btnBloqueoActionPerformed
-
-    private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        RegistroPagoFrame registroPagoFrame = new RegistroPagoFrame(listPersonas, cliente, doctor, indexCD, cita, citasReservadas);
-        registroPagoFrame.setVisible(true);
-        listPersonas = registroPagoFrame.getListPersonas();
-    }//GEN-LAST:event_btnPagoActionPerformed
+    }//GEN-LAST:event_btnBloqueoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnBloqueo;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnPago;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private org.edisoncor.gui.panel.PanelImage btnBloqueo;
+    private org.edisoncor.gui.panel.PanelImage btnEliminar;
+    private org.edisoncor.gui.panel.PanelImage btnPago;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelC;
+    private javax.swing.JLabel labelEstado;
     private javax.swing.JLabel labelN;
     private javax.swing.JLabel labelP;
-    private javax.swing.JLabel labelU;
     // End of variables declaration//GEN-END:variables
 }

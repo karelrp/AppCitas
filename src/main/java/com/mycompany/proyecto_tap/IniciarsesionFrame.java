@@ -72,7 +72,7 @@ public class IniciarsesionFrame extends javax.swing.JFrame {
         //JFrame IniciarsesionFrame = new JFrame();
 
         //IniciarsesionFrame.repaint();
-        getContentPane().setBackground(new Color(180, 205, 230));
+        getContentPane().setBackground(Color.WHITE);
         //System.out.println("doctor: " + usuario.getNombre() + " y su numero de citas son: " + citasReservadas.size());
 
     }
@@ -87,13 +87,18 @@ public class IniciarsesionFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        usuarioField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        regisButton = new javax.swing.JButton();
-        entrarButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        panelImage4 = new org.edisoncor.gui.panel.PanelImage();
+        panelImage2 = new org.edisoncor.gui.panel.PanelImage();
         contraField = new javax.swing.JPasswordField();
+        entrarButton = new org.edisoncor.gui.panel.PanelImage();
+        jLabel4 = new javax.swing.JLabel();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
+        usuarioField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        panelImage3 = new org.edisoncor.gui.panel.PanelImage();
+        jLabel3 = new javax.swing.JLabel();
+        regisButton = new org.edisoncor.gui.panel.Panel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -107,153 +112,186 @@ public class IniciarsesionFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Usuario:");
+        panelImage4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contenedorLogin.png"))); // NOI18N
 
+        panelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fieldBlanco.png"))); // NOI18N
+        panelImage2.setPreferredSize(new java.awt.Dimension(368, 42));
+
+        contraField.setBorder(null);
+
+        javax.swing.GroupLayout panelImage2Layout = new javax.swing.GroupLayout(panelImage2);
+        panelImage2.setLayout(panelImage2Layout);
+        panelImage2Layout.setHorizontalGroup(
+            panelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage2Layout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addComponent(contraField, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelImage2Layout.setVerticalGroup(
+            panelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage2Layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(contraField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        entrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BtnEntrarLogin.png"))); // NOI18N
+        entrarButton.setPreferredSize(new java.awt.Dimension(368, 38));
+        entrarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entrarButtonMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.white);
+        jLabel4.setText("Iniciar Sesion");
+
+        javax.swing.GroupLayout entrarButtonLayout = new javax.swing.GroupLayout(entrarButton);
+        entrarButton.setLayout(entrarButtonLayout);
+        entrarButtonLayout.setHorizontalGroup(
+            entrarButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entrarButtonLayout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(125, 125, 125))
+        );
+        entrarButtonLayout.setVerticalGroup(
+            entrarButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entrarButtonLayout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
+        );
+
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fieldBlanco.png"))); // NOI18N
+        panelImage1.setPreferredSize(new java.awt.Dimension(368, 42));
+
+        usuarioField.setBorder(null);
+
+        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
+        panelImage1.setLayout(panelImage1Layout);
+        panelImage1Layout.setHorizontalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usuarioField, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelImage1Layout.setVerticalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(55, 65, 81));
+        jLabel1.setText("Usuario");
+
+        panelImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HeadingLogin.png"))); // NOI18N
+        panelImage3.setPreferredSize(new java.awt.Dimension(190, 53));
+
+        javax.swing.GroupLayout panelImage3Layout = new javax.swing.GroupLayout(panelImage3);
+        panelImage3.setLayout(panelImage3Layout);
+        panelImage3Layout.setHorizontalGroup(
+            panelImage3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 190, Short.MAX_VALUE)
+        );
+        panelImage3Layout.setVerticalGroup(
+            panelImage3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 53, Short.MAX_VALUE)
+        );
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(55, 65, 81));
         jLabel3.setText("Contraseña:");
 
-        regisButton.setText("Registrarme");
-        regisButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regisButtonActionPerformed(evt);
-            }
-        });
+        regisButton.setBackground(java.awt.Color.white);
+        regisButton.setColorPrimario(java.awt.Color.white);
+        regisButton.setColorSecundario(java.awt.Color.white);
 
-        entrarButton.setText("Entrar");
-        entrarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entrarButtonActionPerformed(evt);
-            }
-        });
+        jLabel5.setForeground(new java.awt.Color(37, 99, 235));
+        jLabel5.setText("Registrar nuevo usuario");
 
-        jLabel4.setText("¿No tienes cuenta?");
+        javax.swing.GroupLayout regisButtonLayout = new javax.swing.GroupLayout(regisButton);
+        regisButton.setLayout(regisButtonLayout);
+        regisButtonLayout.setHorizontalGroup(
+            regisButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(regisButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        regisButtonLayout.setVerticalGroup(
+            regisButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, regisButtonLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel5))
+        );
+
+        javax.swing.GroupLayout panelImage4Layout = new javax.swing.GroupLayout(panelImage4);
+        panelImage4.setLayout(panelImage4Layout);
+        panelImage4Layout.setHorizontalGroup(
+            panelImage4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage4Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(panelImage4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(entrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelImage4Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(panelImage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(regisButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164))
+        );
+        panelImage4Layout.setVerticalGroup(
+            panelImage4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage4Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(panelImage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(entrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(regisButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(regisButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(394, 394, 394)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contraField, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(405, 405, 405)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(entrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(panelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(contraField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(entrarButton)
-                .addGap(72, 72, 72)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(regisButton)
-                .addGap(21, 21, 21))
+                .addGap(15, 15, 15)
+                .addComponent(panelImage4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void regisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regisButtonActionPerformed
-        RegistroFrame registroFrame = new RegistroFrame(listPersonas, citasReservadas);
-        registroFrame.setVisible(true);
-        listPersonas = registroFrame.getListPersonas();
-    }//GEN-LAST:event_regisButtonActionPerformed
-
-    private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
-      /*  System.out.println("cantidad de personas guardadas " + listPersonas.size());
-        for (int i = 0; i < listPersonas.size(); i++) {
-            System.out.println("usuario: " + listPersonas.get(i).getUsuario());
-        }
-      //  System.out.println("doctor: " + .getNombre() + " y su numero de citas son: " + citasReservadas.size());
-        int i = 0, j = 0;
-
-        Persona persona = new Persona();
-
-        for (j = 0; j < listPersonas.size(); j++) {
-            persona = listPersonas.get(j);
-            System.out.println("checamos que el usuario no este null: " + persona.getUsuario());
-            if (!usuarioField.getText().equals("") && !contraField.getText().equals("")) {
-                System.out.println("entro al ciclo");
-                // System.out.println("usuario que esta checando inicio: "+persona.getUsuario());
-                //System.out.println("field inicio: "+usuarioField.getText());
-                if (persona.getUsuario().equals(usuarioField.getText())) {
-                    System.out.println("entró al if de comparar usuarios iguales");
-                    if (persona.getContrasena().equals(contraField.getText())) {
-                        i = 1;
-                        if (persona.isBloqueado()) {
-                            System.out.println("entró");
-                            JOptionPane.showMessageDialog(null, "LA CUENTA SE ENCUENTRA BLOQUEADA. COMUNÍQUESE CON UN ADMINISTRADOR");
-                            break;
-                        } else if (!persona.isDoctor()) {
-                            ClienteFrame clienteFrame = new ClienteFrame(persona, j, listPersonas, citasReservadas);
-                            clienteFrame.setVisible(true);
-                            usuarioField.setText("");
-                            contraField.setText("");
-                            listPersonas = clienteFrame.getListPersonas();
-                            break;
-                        } else if (persona.isDoctor()) {
-                            EspecialistaFrame especialistaFrame = new EspecialistaFrame(persona, j, listPersonas, citasReservadas);
-                            especialistaFrame.setVisible(true);
-                            usuarioField.setText("");
-                            contraField.setText("");
-                            break;
-                        }
-                    }
-                }
-            }
-
-        }
-
-        if (i == 0) {
-            JOptionPane.showMessageDialog(null, "CONTRASEÑA O USUARIO INCORRECTO");
-            usuarioField.setText("");
-            contraField.setText("");
-        }*/
-       String usr = usuarioField.getText();
-        String pass = contraField.getText();
-        if (!usr.isEmpty() && !pass.isEmpty()) {
-            try {
-                Personaa persona = db.find(usr, pass);
-                JOptionPane.showMessageDialog(null,persona.toString());
-                if (persona != null) {
-
-                    inicioSesion(persona);
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error");
-            }
-        }
-
-    }//GEN-LAST:event_entrarButtonActionPerformed
 
     private void inicioSesion(Personaa persona) {
         String u = persona.getUsuario();
@@ -379,6 +417,27 @@ public class IniciarsesionFrame extends javax.swing.JFrame {
         //new LoginFrame().setVisible(true);*/
     }//GEN-LAST:event_formWindowClosing
 
+    private void entrarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarButtonMouseClicked
+        String usr = usuarioField.getText();
+        String pass = contraField.getText();
+        if (!usr.isEmpty() && !pass.isEmpty()) {
+            try {
+                Personaa persona = db.find(usr, pass);
+                JOptionPane.showMessageDialog(null,persona.toString());
+                if (persona != null) {
+
+                    inicioSesion(persona);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error");
+            }
+        }
+    }//GEN-LAST:event_entrarButtonMouseClicked
+
     public ArrayList<Personaa> getListPersonas() {
         return listPersonas;
     }
@@ -420,12 +479,17 @@ public class IniciarsesionFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contraField;
-    private javax.swing.JButton entrarButton;
+    private org.edisoncor.gui.panel.PanelImage entrarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JButton regisButton;
+    private javax.swing.JLabel jLabel5;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
+    private org.edisoncor.gui.panel.PanelImage panelImage2;
+    private org.edisoncor.gui.panel.PanelImage panelImage3;
+    private org.edisoncor.gui.panel.PanelImage panelImage4;
+    private org.edisoncor.gui.panel.Panel regisButton;
     private javax.swing.JTextField usuarioField;
     // End of variables declaration//GEN-END:variables
 }

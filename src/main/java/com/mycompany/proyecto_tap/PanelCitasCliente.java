@@ -33,8 +33,7 @@ public class PanelCitasCliente extends javax.swing.JPanel {
         cliente = cita.getCliente();
         doctor = cita.getDoctor();
         initComponents();
-        labelN.setText(cita.getCliente().getNombre() + " " + cita.getCliente().getApellido());
-        labelU.setText(cita.getCliente().getUsuario());
+        labelN.setText(cita.getCliente().getNombre() + " || " + cita.getCliente().getUsuario());
         labelC.setText("" + cita.getFecha());
         labelP.setText("$ " + cita.getPrecio());
         color();
@@ -108,46 +107,34 @@ public class PanelCitasCliente extends javax.swing.JPanel {
         if (fechaD.isBefore(LocalDateTime.now()) && cita.isCitaPagada() && cita.getAvancePago() == cita.getDoctor().getCostoConsulta()) {
             this.setBackground(new Color(204, 255, 204));
             labelN.setForeground(Color.WHITE);
-            labelU.setForeground(Color.WHITE);
+
             labelC.setForeground(Color.WHITE);
             labelP.setForeground(Color.WHITE);
-            jLabel2.setForeground(Color.WHITE);
-            jLabel3.setForeground(Color.WHITE);
-            jLabel6.setForeground(Color.WHITE);
-            jLabel5.setForeground(Color.WHITE);
+
 
         } else if (fechaD.isBefore(LocalDateTime.now()) && !cita.isCitaPagada()) {
             this.setBackground(new Color(200, 0, 0));
             labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
+ 
             labelC.setForeground(Color.BLACK);
             labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
+ 
 
         } else if (fechaD.isAfter(LocalDateTime.now()) && cita.isCitaPagada() && cita.getAvancePago() == cita.getDoctor().getCostoConsulta()) {
             this.setBackground(new Color(120, 205, 230));
             labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
+
             labelC.setForeground(Color.BLACK);
             labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
+
 
         } else if (fechaD.isAfter(LocalDateTime.now()) && !cita.isCitaPagada() && cita.getAvancePago() < cita.getDoctor().getCostoConsulta()) {
             this.setBackground(new Color(255, 255, 153));
             labelN.setForeground(Color.BLACK);
-            labelU.setForeground(Color.BLACK);
+
             labelC.setForeground(Color.BLACK);
             labelP.setForeground(Color.BLACK);
-            jLabel2.setForeground(Color.BLACK);
-            jLabel3.setForeground(Color.BLACK);
-            jLabel6.setForeground(Color.BLACK);
-            jLabel5.setForeground(Color.BLACK);
+
         }
     }
 
@@ -160,26 +147,14 @@ public class PanelCitasCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         labelN = new javax.swing.JLabel();
-        labelU = new javax.swing.JLabel();
         labelC = new javax.swing.JLabel();
         labelP = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        jLabel2.setText("NOMBRE:");
-
-        jLabel3.setText("USUARIO: ");
-
-        jLabel5.setText("HORA CITA:");
-
-        jLabel6.setText("PRECIO: ");
+        setBackground(java.awt.Color.white);
 
         labelN.setText("...");
-
-        labelU.setText("...");
 
         labelC.setText("...");
 
@@ -190,53 +165,33 @@ public class PanelCitasCliente extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelU, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelC, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(labelP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(labelC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelP, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
                     .addComponent(labelN)
-                    .addComponent(labelC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(labelU)
+                    .addComponent(labelC)
                     .addComponent(labelP))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelC;
     private javax.swing.JLabel labelN;
     private javax.swing.JLabel labelP;
-    private javax.swing.JLabel labelU;
     // End of variables declaration//GEN-END:variables
 }
